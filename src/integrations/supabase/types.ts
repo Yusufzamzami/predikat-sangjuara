@@ -14,7 +14,233 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ahp_comparisons: {
+        Row: {
+          created_at: string
+          criteria_a_id: string
+          criteria_b_id: string
+          id: string
+          nilai_perbandingan: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          criteria_a_id: string
+          criteria_b_id: string
+          id?: string
+          nilai_perbandingan: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          criteria_a_id?: string
+          criteria_b_id?: string
+          id?: string
+          nilai_perbandingan?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ahp_comparisons_criteria_a_id_fkey"
+            columns: ["criteria_a_id"]
+            isOneToOne: false
+            referencedRelation: "criteria"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ahp_comparisons_criteria_b_id_fkey"
+            columns: ["criteria_b_id"]
+            isOneToOne: false
+            referencedRelation: "criteria"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessments: {
+        Row: {
+          created_at: string
+          criteria_id: string
+          id: string
+          nilai: number
+          nilai_normalisasi: number | null
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          criteria_id: string
+          id?: string
+          nilai: number
+          nilai_normalisasi?: number | null
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          criteria_id?: string
+          id?: string
+          nilai?: number
+          nilai_normalisasi?: number | null
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessments_criteria_id_fkey"
+            columns: ["criteria_id"]
+            isOneToOne: false
+            referencedRelation: "criteria"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessments_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      criteria: {
+        Row: {
+          bobot: number
+          created_at: string
+          deskripsi: string | null
+          id: string
+          jenis: string
+          kode: string
+          nama: string
+          updated_at: string
+        }
+        Insert: {
+          bobot?: number
+          created_at?: string
+          deskripsi?: string | null
+          id?: string
+          jenis: string
+          kode: string
+          nama: string
+          updated_at?: string
+        }
+        Update: {
+          bobot?: number
+          created_at?: string
+          deskripsi?: string | null
+          id?: string
+          jenis?: string
+          kode?: string
+          nama?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          role: string
+          updated_at: string
+          user_id: string
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          full_name: string
+          id?: string
+          role?: string
+          updated_at?: string
+          user_id: string
+          username: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          role?: string
+          updated_at?: string
+          user_id?: string
+          username?: string
+        }
+        Relationships: []
+      }
+      results: {
+        Row: {
+          created_at: string
+          id: string
+          ranking: number | null
+          student_id: string
+          total_score: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ranking?: number | null
+          student_id: string
+          total_score?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ranking?: number | null
+          student_id?: string
+          total_score?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "results_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: true
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      students: {
+        Row: {
+          created_at: string
+          id: string
+          ipk: number
+          jurusan: string
+          keaktifan_organisasi: string | null
+          nama: string
+          nim: string
+          prestasi_non_akademik: string | null
+          semester: number
+          tahun_masuk: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ipk: number
+          jurusan: string
+          keaktifan_organisasi?: string | null
+          nama: string
+          nim: string
+          prestasi_non_akademik?: string | null
+          semester: number
+          tahun_masuk: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ipk?: number
+          jurusan?: string
+          keaktifan_organisasi?: string | null
+          nama?: string
+          nim?: string
+          prestasi_non_akademik?: string | null
+          semester?: number
+          tahun_masuk?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
