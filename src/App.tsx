@@ -9,6 +9,10 @@ import AuthPage from "./pages/AuthPage";
 import DashboardPage from "./pages/DashboardPage";
 import StudentsPage from "./pages/StudentsPage";
 import CriteriaPage from "./pages/CriteriaPage";
+import AHPPage from "./pages/AHPPage";
+import SAWPage from "./pages/SAWPage";
+import ResultsPage from "./pages/ResultsPage";
+import ReportsPage from "./pages/ReportsPage";
 import NotFound from "./pages/NotFound";
 import { DashboardLayout } from "./components/layout/DashboardLayout";
 
@@ -58,6 +62,26 @@ const App = () => (
             <Route path="/criteria" element={
               <ProtectedRoute>
                 <CriteriaPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/ahp" element={
+              <ProtectedRoute>
+                <AHPPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/saw" element={
+              <ProtectedRoute>
+                <SAWPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/results" element={
+              <ProtectedRoute>
+                <ResultsPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/reports" element={
+              <ProtectedRoute>
+                <ReportsPage />
               </ProtectedRoute>
             } />
             
