@@ -161,10 +161,13 @@ const CriteriaPage = () => {
   const totalBobot = criteria.reduce((sum, c) => sum + c.bobot, 0);
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-6 animate-fade-in">
+      <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Kriteria Penilaian</h1>
+          <div className="flex items-center gap-3 mb-2">
+            <Target className="w-8 h-8 text-primary animate-float" />
+            <h1 className="text-3xl font-bold gradient-text">Kriteria Penilaian</h1>
+          </div>
           <p className="text-muted-foreground">Kelola kriteria dan bobot untuk penilaian mahasiswa</p>
         </div>
         
@@ -173,7 +176,7 @@ const CriteriaPage = () => {
           if (!open) resetForm();
         }}>
           <DialogTrigger asChild>
-            <Button>
+            <Button variant="futuristic" size="lg" className="glow-on-hover">
               <Plus className="h-4 w-4 mr-2" />
               Tambah Kriteria
             </Button>
@@ -252,10 +255,10 @@ const CriteriaPage = () => {
               </div>
 
               <DialogFooter>
-                <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
+                <Button type="button" variant="ghost" onClick={() => setIsDialogOpen(false)}>
                   Batal
                 </Button>
-                <Button type="submit">
+                <Button type="submit" variant="neon" className="glow-on-hover">
                   {editingCriteria ? 'Update' : 'Simpan'}
                 </Button>
               </DialogFooter>
@@ -265,26 +268,26 @@ const CriteriaPage = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
+        <Card className="hover-scale glow-on-hover">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Kriteria</CardTitle>
-            <Target className="h-4 w-4 text-muted-foreground" />
+            <Target className="h-4 w-4 text-muted-foreground animate-float" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{criteria.length}</div>
+            <div className="text-2xl font-bold gradient-text">{criteria.length}</div>
             <p className="text-xs text-muted-foreground">
               Kriteria terdaftar
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="hover-scale glow-on-hover">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Bobot</CardTitle>
-            <Target className="h-4 w-4 text-muted-foreground" />
+            <Target className="h-4 w-4 text-muted-foreground animate-float delay-100" />
           </CardHeader>
           <CardContent>
-            <div className={`text-2xl font-bold ${Math.abs(totalBobot - 1) < 0.0001 ? 'text-success' : 'text-warning'}`}>
+            <div className={`text-2xl font-bold ${Math.abs(totalBobot - 1) < 0.0001 ? 'text-success animate-glow-pulse' : 'text-warning animate-glow-pulse'}`}>
               {totalBobot.toFixed(4)}
             </div>
             <p className="text-xs text-muted-foreground">
@@ -293,13 +296,13 @@ const CriteriaPage = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="hover-scale glow-on-hover">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Status</CardTitle>
-            <Target className="h-4 w-4 text-muted-foreground" />
+            <Target className="h-4 w-4 text-muted-foreground animate-float delay-200" />
           </CardHeader>
           <CardContent>
-            <div className={`text-2xl font-bold ${criteria.length > 0 && Math.abs(totalBobot - 1) < 0.0001 ? 'text-success' : 'text-warning'}`}>
+            <div className={`text-2xl font-bold ${criteria.length > 0 && Math.abs(totalBobot - 1) < 0.0001 ? 'text-success animate-glow-pulse' : 'text-warning animate-glow-pulse'}`}>
               {criteria.length > 0 && Math.abs(totalBobot - 1) < 0.0001 ? 'Siap' : 'Belum Siap'}
             </div>
             <p className="text-xs text-muted-foreground">
@@ -309,9 +312,9 @@ const CriteriaPage = () => {
         </Card>
       </div>
 
-      <Card>
+      <Card className="glass-card">
         <CardHeader>
-          <CardTitle>Daftar Kriteria</CardTitle>
+          <CardTitle className="gradient-text">Daftar Kriteria</CardTitle>
           <CardDescription>
             Kriteria yang digunakan untuk penilaian mahasiswa berprestasi
           </CardDescription>
@@ -363,8 +366,9 @@ const CriteriaPage = () => {
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <Button
-                            variant="outline"
+                            variant="glass"
                             size="sm"
+                            className="hover-scale"
                             onClick={() => handleEdit(criteria)}
                           >
                             <Edit className="h-4 w-4" />
@@ -372,6 +376,7 @@ const CriteriaPage = () => {
                           <Button
                             variant="outline"
                             size="sm"
+                            className="hover-scale hover:border-destructive hover:text-destructive"
                             onClick={() => handleDelete(criteria.id)}
                           >
                             <Trash2 className="h-4 w-4" />

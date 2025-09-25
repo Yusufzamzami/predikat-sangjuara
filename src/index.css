@@ -54,6 +54,26 @@ All colors MUST be HSL.
     --warning-foreground: 220 14% 12%;
     --info: 217 91% 60%;
     --info-foreground: 210 40% 98%;
+    
+    /* Futuristic gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--muted)));
+    --gradient-neon: linear-gradient(45deg, hsl(var(--accent)), hsl(var(--primary)), hsl(var(--info)));
+    --gradient-glow: radial-gradient(circle, hsl(var(--primary) / 0.3), transparent 70%);
+    
+    /* Shadow effects */
+    --shadow-glow: 0 0 30px hsl(var(--primary) / 0.3);
+    --shadow-neon: 0 0 20px hsl(var(--accent) / 0.5);
+    --shadow-elegant: 0 10px 40px -10px hsl(var(--primary) / 0.2);
+    
+    /* Glass morphism */
+    --glass-bg: hsl(var(--background) / 0.8);
+    --glass-border: hsl(var(--border) / 0.2);
+    
+    /* Animation speeds */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
@@ -101,6 +121,21 @@ All colors MUST be HSL.
     --warning-foreground: 220 14% 6%;
     --info: 217 91% 60%;
     --info-foreground: 220 14% 6%;
+    
+    /* Dark mode futuristic gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--muted)));
+    --gradient-neon: linear-gradient(45deg, hsl(var(--accent)), hsl(var(--primary)), hsl(var(--info)));
+    --gradient-glow: radial-gradient(circle, hsl(var(--primary) / 0.4), transparent 70%);
+    
+    /* Enhanced shadows for dark mode */
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.4);
+    --shadow-neon: 0 0 30px hsl(var(--accent) / 0.6);
+    --shadow-elegant: 0 10px 50px -10px hsl(var(--primary) / 0.3);
+    
+    /* Dark glass morphism */
+    --glass-bg: hsl(var(--background) / 0.8);
+    --glass-border: hsl(var(--border) / 0.3);
   }
 }
 
@@ -112,4 +147,169 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  /* Futuristic button effects */
+  .btn-futuristic {
+    @apply relative overflow-hidden transition-all duration-300;
+    @apply hover:shadow-[var(--shadow-glow)] hover:scale-105;
+    background: var(--gradient-primary);
+  }
+
+  .btn-futuristic::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: var(--gradient-neon);
+  }
+
+  .btn-futuristic:hover::before {
+    @apply opacity-20;
+  }
+
+  /* Glass morphism cards */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    @apply transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply shadow-[var(--shadow-elegant)];
+    backdrop-filter: blur(15px);
+  }
+
+  /* Neon glow effects */
+  .neon-glow {
+    @apply animate-neon-glow;
+  }
+
+  .glow-on-hover {
+    @apply transition-all duration-300;
+  }
+
+  .glow-on-hover:hover {
+    box-shadow: var(--shadow-glow);
+    @apply animate-glow-pulse;
+  }
+
+  /* Shimmer effect for loading */
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    @apply absolute top-0 -left-full w-full h-full;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
+    @apply animate-shimmer;
+  }
+
+  /* Floating elements */
+  .float-element {
+    @apply animate-float;
+  }
+
+  /* Interactive hover scale */
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  /* Smooth fade in for page transitions */
+  .page-enter {
+    @apply animate-fade-in;
+  }
+
+  /* Futuristic input fields */
+  .input-futuristic {
+    @apply relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+    @apply transition-all duration-300;
+  }
+
+  .input-futuristic:focus {
+    @apply shadow-[var(--shadow-glow)];
+    border-color: hsl(var(--primary));
+  }
+
+  /* Cyber grid background */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Pulsing status indicators */
+  .status-pulse {
+    @apply animate-glow-pulse;
+  }
+
+  /* Smooth underline animations for links */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Gradient text effect */
+  .gradient-text {
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* 3D button effect */
+  .btn-3d {
+    @apply transform transition-all duration-150;
+    box-shadow: 0 6px 0 hsl(var(--primary) / 0.8);
+  }
+
+  .btn-3d:active {
+    @apply translate-y-1;
+    box-shadow: 0 3px 0 hsl(var(--primary) / 0.8);
+  }
+}
+
+@layer utilities {
+  /* Animation delay utilities */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-500 { animation-delay: 0.5s; }
+  
+  /* Transition utilities */
+  .transition-fast { transition: var(--transition-fast); }
+  .transition-normal { transition: var(--transition-normal); }
+  .transition-slow { transition: var(--transition-slow); }
+  
+  /* Glow utilities */
+  .glow-sm { box-shadow: 0 0 10px hsl(var(--primary) / 0.3); }
+  .glow-md { box-shadow: var(--shadow-glow); }
+  .glow-lg { box-shadow: 0 0 50px hsl(var(--primary) / 0.4); }
+  .glow-neon { box-shadow: var(--shadow-neon); }
+  
+  /* Background size utilities for gradient animations */
+  .bg-size-200 { background-size: 200% 100%; }
+  .bg-pos-0 { background-position: 0% 50%; }
+  .bg-pos-100 { background-position: 100% 50%; }
+  
+  /* Backdrop blur utilities */
+  .backdrop-blur-xs { backdrop-filter: blur(2px); }
+  .backdrop-blur-sm { backdrop-filter: blur(4px); }
+  .backdrop-blur-base { backdrop-filter: blur(8px); }
+  .backdrop-blur-md { backdrop-filter: blur(12px); }
+  .backdrop-blur-lg { backdrop-filter: blur(16px); }
+  .backdrop-blur-xl { backdrop-filter: blur(24px); }
 }
