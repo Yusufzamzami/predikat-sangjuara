@@ -210,65 +210,65 @@ const ReportsPage = () => {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-8">
-      <div className="flex items-center justify-between print:justify-center">
+    <div className="container mx-auto p-3 sm:p-6 space-y-6 sm:space-y-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between print:justify-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Laporan</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Laporan</h1>
+          <p className="text-muted-foreground text-sm sm:text-base">
             Laporan lengkap sistem pendukung keputusan mahasiswa berprestasi
           </p>
         </div>
-        <div className="flex gap-2 print:hidden">
-          <Button variant="outline" onClick={printReport} className="gap-2">
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto print:hidden">
+          <Button variant="outline" onClick={printReport} className="gap-2 text-xs sm:text-sm">
             <FileText className="h-4 w-4" />
-            Print
+            <span className="hidden sm:inline">Print</span>
           </Button>
-          <Button onClick={exportFullReport} className="gap-2">
+          <Button onClick={exportFullReport} className="gap-2 text-xs sm:text-sm">
             <Download className="h-4 w-4" />
-            Export Laporan
+            <span className="hidden sm:inline">Export </span>Laporan
           </Button>
         </div>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+        <Card className="glass-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Mahasiswa</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">Total Mahasiswa</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{reportData.totalStudents}</div>
+            <div className="text-xl sm:text-2xl font-bold">{reportData.totalStudents}</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="glass-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Kriteria</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">Total Kriteria</CardTitle>
             <Target className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{reportData.totalCriteria}</div>
+            <div className="text-xl sm:text-2xl font-bold">{reportData.totalCriteria}</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="glass-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Penilaian</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">Total Penilaian</CardTitle>
             <BarChart3 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{reportData.completedAssessments}</div>
+            <div className="text-xl sm:text-2xl font-bold">{reportData.completedAssessments}</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="glass-card col-span-2 lg:col-span-1">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Mahasiswa Terbaik</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">Mahasiswa Terbaik</CardTitle>
             <Trophy className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">{reportData.topStudent?.nama || 'Belum ada'}</div>
+            <div className="text-sm sm:text-lg font-bold truncate">{reportData.topStudent?.nama || 'Belum ada'}</div>
             <p className="text-xs text-muted-foreground">
               {reportData.topStudent?.nim || 'Belum ada data'}
             </p>
@@ -277,25 +277,33 @@ const ReportsPage = () => {
       </div>
 
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="print:hidden">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="criteria">Kriteria</TabsTrigger>
-          <TabsTrigger value="students">Mahasiswa</TabsTrigger>
-          <TabsTrigger value="results">Hasil</TabsTrigger>
+        <TabsList className="print:hidden grid grid-cols-2 lg:grid-cols-4 w-full">
+          <TabsTrigger value="overview" className="text-xs sm:text-sm">Overview</TabsTrigger>
+          <TabsTrigger value="criteria" className="text-xs sm:text-sm">Kriteria</TabsTrigger>
+          <TabsTrigger value="students" className="text-xs sm:text-sm">Mahasiswa</TabsTrigger>
+          <TabsTrigger value="results" className="text-xs sm:text-sm">Hasil</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="overview" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card>
+        <TabsContent value="overview" className="space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6">
+            <Card className="glass-card">
               <CardHeader>
-                <CardTitle>Distribusi Mahasiswa per Jurusan</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Distribusi Mahasiswa per Jurusan</CardTitle>
               </CardHeader>
               <CardContent>
                 <ChartContainer config={chartConfig}>
-                  <ResponsiveContainer width="100%" height={300}>
+                  <ResponsiveContainer width="100%" height={250}>
                     <BarChart data={departmentChartData}>
-                      <XAxis dataKey="department" />
-                      <YAxis />
+                      <XAxis 
+                        dataKey="department" 
+                        fontSize={12}
+                        tick={{ fontSize: 10 }}
+                        interval={0}
+                        angle={-45}
+                        textAnchor="end"
+                        height={60}
+                      />
+                      <YAxis fontSize={12} />
                       <ChartTooltip content={<ChartTooltipContent />} />
                       <Bar dataKey="count" fill="var(--color-count)" />
                     </BarChart>
@@ -304,19 +312,19 @@ const ReportsPage = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="glass-card">
               <CardHeader>
-                <CardTitle>Pie Chart Jurusan</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Pie Chart Jurusan</CardTitle>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width="100%" height={250}>
                   <PieChart>
                     <Pie
                       data={pieData}
                       cx="50%"
                       cy="50%"
-                      innerRadius={60}
-                      outerRadius={100}
+                      innerRadius={40}
+                      outerRadius={80}
                       paddingAngle={5}
                       dataKey="value"
                     >

@@ -27,10 +27,11 @@ export const DashboardHeader = () => {
 
   return (
     <header className="border-b border-border bg-card">
-      <div className="flex h-16 items-center justify-between px-6">
-        <div className="flex items-center gap-4">
-          <h1 className="text-xl font-semibold text-foreground">
-            Sistem Pendukung Keputusan - Mahasiswa Berprestasi
+      <div className="flex h-14 sm:h-16 items-center justify-between px-3 sm:px-6">
+        <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+          <h1 className="text-sm sm:text-xl font-semibold text-foreground truncate">
+            <span className="hidden lg:inline">Sistem Pendukung Keputusan - Mahasiswa Berprestasi</span>
+            <span className="lg:hidden">SPK Mahasiswa</span>
           </h1>
         </div>
 

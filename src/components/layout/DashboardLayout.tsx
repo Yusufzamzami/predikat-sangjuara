@@ -12,10 +12,12 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
         <DashboardSidebar />
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col min-w-0">
           <DashboardHeader />
-          <main className="flex-1 p-6">
-            {children}
+          <main className="flex-1 p-3 sm:p-6 overflow-x-auto">
+            <div className="page-enter">
+              {children}
+            </div>
           </main>
         </div>
       </div>
